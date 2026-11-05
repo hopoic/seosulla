@@ -1,0 +1,14 @@
+{
+  "name": "서순라길 생일 한잔 가이드",
+  "short_name": "서순라길",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#1c1916",
+  "theme_color": "#1c1916",
+  "lang": "ko",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

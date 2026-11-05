@@ -1,0 +1,616 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>서순라길 한잔</title>
+<meta name="description" content="11월 6일(금) 고선준 님 생일 축하 · 서순라길 가볍게 한잔 가이드">
+<!-- iOS home-screen app mode -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="서순라길">
+<meta name="theme-color" content="#1c1916">
+<meta name="format-detection" content="telephone=no">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #1c1916;
+    --surface: #26221e;
+    --surface-2: #302a25;
+    --line: #3d362f;
+    --stone: #4a423a;
+    --text: #f1ebe3;
+    --muted: #a99d90;
+    --dim: #7a6f64;
+    --lantern: #e0a458;
+    --lantern-soft: rgba(224, 164, 88, 0.14);
+    --dancheong: #d0553b;
+    --celadon: #8fb3a0;
+    --serif: "Noto Serif KR", "Apple SD Gothic Neo", serif;
+    --sans: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard", "Noto Sans KR", sans-serif;
+    --safe-top: env(safe-area-inset-top, 0px);
+    --safe-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.55;
+    overflow-x: hidden;
+    padding-bottom: calc(76px + var(--safe-bottom));
+  }
+  a { color: inherit; }
+  .wrap { max-width: 560px; margin: 0 auto; padding: 0 16px; }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    position: relative;
+    padding: calc(var(--safe-top) + 36px) 0 28px;
+    background:
+      radial-gradient(120% 70% at 50% 0%, rgba(224,164,88,.22), transparent 60%),
+      var(--bg);
+    overflow: hidden;
+  }
+  .wall {
+    position: absolute; left: 0; right: 0; bottom: 0; height: 46px;
+    background-image:
+      linear-gradient(var(--bg) 2px, transparent 2px),
+      linear-gradient(90deg, var(--bg) 2px, transparent 2px);
+    background-size: 38px 15px, 38px 15px;
+    background-color: var(--stone);
+    opacity: .55;
+    -webkit-mask-image: linear-gradient(transparent, #000 70%);
+            mask-image: linear-gradient(transparent, #000 70%);
+  }
+  .eyebrow {
+    display: inline-flex; gap: 8px; align-items: center;
+    font-size: 13px; letter-spacing: .04em; color: var(--lantern);
+    border: 1px solid rgba(224,164,88,.35); border-radius: 999px;
+    padding: 4px 12px; background: var(--lantern-soft);
+  }
+  h1 {
+    font-family: var(--serif); font-weight: 900;
+    font-size: clamp(30px, 9vw, 40px); line-height: 1.2;
+    margin: 16px 0 10px; letter-spacing: -0.01em;
+  }
+  h1 em { font-style: normal; color: var(--lantern); }
+  .hero p { margin: 0; color: var(--muted); font-size: 15px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; position: relative; z-index: 1; }
+  .chip {
+    font-size: 13px; padding: 6px 11px; border-radius: 10px;
+    background: var(--surface); border: 1px solid var(--line); color: var(--text);
+  }
+  .chip b { color: var(--lantern); font-weight: 600; }
+
+  /* ---------- Sections ---------- */
+  section { padding: 28px 0 8px; scroll-margin-top: calc(var(--safe-top) + 8px); }
+  h2 {
+    font-family: var(--serif); font-weight: 700; font-size: 22px;
+    margin: 0 0 4px; display: flex; align-items: baseline; gap: 10px;
+  }
+  h2 .no { font-size: 13px; color: var(--dim); font-family: var(--sans); font-weight: 600; letter-spacing: .08em; }
+  .lead { color: var(--muted); font-size: 14px; margin: 0 0 16px; }
+
+  /* ---------- Timeline ---------- */
+  .timeline { list-style: none; margin: 0; padding: 0; position: relative; }
+  .timeline::before {
+    content: ""; position: absolute; left: 58px; top: 8px; bottom: 8px;
+    width: 2px; background: var(--line);
+  }
+  .timeline li { display: grid; grid-template-columns: 50px 1fr; gap: 20px; padding: 8px 0; position: relative; }
+  .timeline time { font-variant-numeric: tabular-nums; font-weight: 700; font-size: 15px; color: var(--muted); text-align: right; padding-top: 1px; }
+  .timeline li::after {
+    content: ""; position: absolute; left: 53px; top: 15px;
+    width: 12px; height: 12px; border-radius: 50%;
+    background: var(--bg); border: 2px solid var(--stone);
+  }
+  .timeline li.now::after { background: var(--lantern); border-color: var(--lantern); box-shadow: 0 0 0 5px var(--lantern-soft); }
+  .timeline li.now time { color: var(--lantern); }
+  .timeline li.done { opacity: .5; }
+  .timeline .t-title { font-weight: 650; }
+  .timeline .t-sub { color: var(--muted); font-size: 14px; }
+
+  /* ---------- Route card ---------- */
+  .card {
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: 16px; padding: 16px;
+  }
+  .route { display: grid; gap: 12px; }
+  .route-row { display: grid; grid-template-columns: 36px 1fr; gap: 12px; align-items: start; }
+  .badge {
+    width: 36px; height: 36px; border-radius: 10px;
+    display: grid; place-items: center; font-weight: 800; font-size: 13px; color: #1c1916;
+  }
+  .b-sbd { background: #d4003b; color: #fff; }
+  .b-3 { background: #ef7c1c; }
+  .b-walk { background: var(--surface-2); color: var(--text); border: 1px solid var(--line); }
+  .route-row .r-title { font-weight: 650; }
+  .route-row .r-sub { color: var(--muted); font-size: 14px; }
+  .note {
+    margin-top: 14px; padding: 12px 14px; border-radius: 12px;
+    background: var(--lantern-soft); color: var(--text); font-size: 14px;
+    border-left: 3px solid var(--lantern);
+  }
+  .note b { color: var(--lantern); }
+
+  /* ---------- Strip map ---------- */
+  .strip { position: relative; padding: 6px 0 6px 0; }
+  .strip-svg { width: 100%; height: auto; display: block; }
+  .strip-legend { display: flex; gap: 14px; flex-wrap: wrap; font-size: 12px; color: var(--muted); margin-top: 8px; }
+  .dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 5px; vertical-align: 0; }
+
+  /* ---------- Filter ---------- */
+  .filters {
+    position: sticky; top: 0; z-index: 5;
+    margin: 0 -16px 14px; padding: calc(var(--safe-top) + 10px) 16px 10px;
+    background: linear-gradient(var(--bg) 80%, transparent);
+    display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none;
+  }
+  .filters::-webkit-scrollbar { display: none; }
+  .filters button {
+    flex: 0 0 auto; font: inherit; font-size: 14px; font-weight: 600;
+    padding: 8px 14px; border-radius: 999px;
+    color: var(--muted); background: var(--surface); border: 1px solid var(--line);
+  }
+  .filters button[aria-pressed="true"] { color: #1c1916; background: var(--lantern); border-color: var(--lantern); }
+
+  /* ---------- Place cards ---------- */
+  .places { display: grid; gap: 14px; }
+  .place {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 18px;
+    padding: 16px; scroll-margin-top: calc(var(--safe-top) + 64px);
+    transition: border-color .3s, box-shadow .3s;
+  }
+  .place.flash { border-color: var(--lantern); box-shadow: 0 0 0 4px var(--lantern-soft); }
+  .place-head { display: flex; gap: 12px; align-items: flex-start; }
+  .place-no {
+    flex: 0 0 auto; width: 30px; height: 30px; border-radius: 50%;
+    display: grid; place-items: center; font-size: 13px; font-weight: 800; color: #1c1916;
+  }
+  .place h3 { margin: 0; font-family: var(--serif); font-size: 19px; line-height: 1.3; }
+  .place .kind { color: var(--muted); font-size: 13px; margin-top: 2px; }
+  .star {
+    margin-left: auto; flex: 0 0 auto; font: inherit; font-size: 20px; line-height: 1;
+    width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center;
+    background: var(--surface-2); border: 1px solid var(--line); color: var(--dim);
+  }
+  .star[aria-pressed="true"] { color: var(--lantern); border-color: rgba(224,164,88,.5); background: var(--lantern-soft); }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0 10px; }
+  .tag { font-size: 12px; padding: 3px 9px; border-radius: 7px; background: var(--surface-2); color: var(--muted); border: 1px solid var(--line); }
+  .tag.pick { color: var(--lantern); border-color: rgba(224,164,88,.4); background: var(--lantern-soft); }
+  .place p { margin: 0 0 10px; font-size: 15px; }
+  .menu { font-size: 14px; color: var(--muted); margin: 0 0 4px; }
+  .menu b { color: var(--text); font-weight: 600; }
+  .tip { font-size: 14px; color: var(--celadon); margin: 6px 0 0; }
+  .addr { font-size: 13px; color: var(--dim); margin-top: 10px; }
+  .actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
+  .btn {
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+    min-height: 44px; border-radius: 12px; text-decoration: none;
+    font-weight: 650; font-size: 14px; border: 1px solid var(--line); background: var(--surface-2);
+  }
+  .btn.naver { background: #03c75a; border-color: #03c75a; color: #fff; }
+  .empty { color: var(--muted); text-align: center; padding: 28px 0; font-size: 14px; }
+
+  /* ---------- Checklist ---------- */
+  .checks { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+  .checks label {
+    display: flex; gap: 12px; align-items: flex-start; cursor: pointer;
+    background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 13px 14px;
+  }
+  .checks input { appearance: none; -webkit-appearance: none; flex: 0 0 auto; width: 22px; height: 22px; border-radius: 7px; border: 2px solid var(--stone); margin: 1px 0 0; display: grid; place-items: center; }
+  .checks input:checked { background: var(--celadon); border-color: var(--celadon); }
+  .checks input:checked::after { content: "✓"; color: #1c1916; font-weight: 900; font-size: 14px; }
+  .checks input:checked + span { color: var(--dim); text-decoration: line-through; }
+  .checks span small { display: block; color: var(--muted); font-size: 13px; text-decoration: none; }
+
+  footer { color: var(--dim); font-size: 12px; padding: 28px 0 12px; line-height: 1.6; }
+
+  /* ---------- Bottom tab bar ---------- */
+  .tabbar {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 10;
+    padding: 6px 8px calc(6px + var(--safe-bottom));
+    background: rgba(28,25,22,.86);
+    -webkit-backdrop-filter: blur(16px) saturate(1.4); backdrop-filter: blur(16px) saturate(1.4);
+    border-top: 1px solid var(--line);
+    display: grid; grid-template-columns: repeat(4, 1fr);
+  }
+  .tabbar a {
+    text-decoration: none; text-align: center; font-size: 11px; color: var(--muted);
+    padding: 6px 0; border-radius: 10px; display: grid; gap: 2px; justify-items: center;
+  }
+  .tabbar a svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .tabbar a.active { color: var(--lantern); }
+</style>
+</head>
+<body>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <span class="eyebrow">🎂 11월 6일 금요일</span>
+    <h1>고선준 님<br><em>생일</em> 한잔,<br>서순라길에서</h1>
+    <p>종묘 돌담길 따라 가볍게 1차, 분위기 좋은 곳에서 2차.</p>
+    <div class="chips">
+      <span class="chip">출발 <b>16:30</b> 네이버 본사</span>
+      <span class="chip">도착 <b>~17:30</b> 종로3가역</span>
+      <span class="chip" id="sunset-chip">해 지는 시각 <b>17:2x</b></span>
+    </div>
+  </div>
+  <div class="wall" aria-hidden="true"></div>
+</header>
+
+<main class="wrap">
+
+  <section id="plan">
+    <h2><span class="no">01</span>오늘 흐름</h2>
+    <p class="lead">현재 시각에 맞춰 지금 단계가 표시됩니다.</p>
+    <ol class="timeline" id="timeline"></ol>
+  </section>
+
+  <section id="route">
+    <h2><span class="no">02</span>가는 길</h2>
+    <p class="lead">정자역 → 종로3가역, 대중교통 약 1시간</p>
+    <div class="card route">
+      <div class="route-row">
+        <div class="badge b-sbd">신분</div>
+        <div><div class="r-title">정자역 → 양재 또는 신사</div><div class="r-sub">신분당선 강남·신사 방면</div></div>
+      </div>
+      <div class="route-row">
+        <div class="badge b-3">3</div>
+        <div><div class="r-title">3호선 환승 → 종로3가역</div><div class="r-sub">대화 방면 · 을지로3가 다음 역</div></div>
+      </div>
+      <div class="route-row">
+        <div class="badge b-walk">🚶</div>
+        <div><div class="r-title">7·8번 출구 → 종묘 서쪽 돌담</div><div class="r-sub">도보 약 5분, 담장 오른쪽에 끼고 북쪽으로</div></div>
+      </div>
+      <div class="note"><b>금요일 퇴근길</b>이라 택시·자차는 막힐 수 있어요. 지하철이 시간 계산하기 편합니다. 평일엔 서순라길에 차가 다니니(차 없는 거리는 주말만) 골목 걸을 때 조심하세요.</div>
+    </div>
+  </section>
+
+  <section id="map">
+    <h2><span class="no">03</span>길 위의 순서</h2>
+    <p class="lead">남쪽(종로3가) → 북쪽(창덕궁 방향). 점을 누르면 해당 가게로 이동합니다.</p>
+    <div class="card strip">
+      <svg class="strip-svg" id="strip" viewBox="0 0 340 520" role="img" aria-label="서순라길 가게 위치 순서도"></svg>
+      <div class="strip-legend">
+        <span><i class="dot" style="background:var(--dancheong)"></i>1차 · 안주</span>
+        <span><i class="dot" style="background:var(--lantern)"></i>2차 · 한잔</span>
+        <span><i class="dot" style="background:var(--celadon)"></i>카페 · 기타</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="places">
+    <h2><span class="no">04</span>추천 장소</h2>
+    <p class="lead">☆를 눌러 후보를 찜해두면 '찜' 탭에 모입니다.</p>
+    <div class="filters" role="toolbar" aria-label="장소 필터">
+      <button data-f="all" aria-pressed="true">전체</button>
+      <button data-f="first" aria-pressed="false">1차 · 안주</button>
+      <button data-f="second" aria-pressed="false">2차 · 한잔</button>
+      <button data-f="quiet" aria-pressed="false">대화하기 좋은</button>
+      <button data-f="fav" aria-pressed="false">★ 찜</button>
+    </div>
+    <div class="places" id="placeList"></div>
+  </section>
+
+  <section id="check">
+    <h2><span class="no">05</span>챙길 것</h2>
+    <p class="lead">체크 상태는 이 폰에 저장됩니다.</p>
+    <ul class="checks" id="checks"></ul>
+  </section>
+
+  <footer>
+    가게 정보는 매거진·리뷰(엘르, 마리끌레르, 핫식신, 폴레 등) 기준이며 영업시간·휴무·예약 여부는 바뀔 수 있습니다.
+    출발 전 네이버지도에서 한 번 더 확인하세요.<br>
+    Made for 고선준 님 생일 · 2026.11.06
+  </footer>
+</main>
+
+<nav class="tabbar" aria-label="바로가기">
+  <a href="#plan" data-tab="plan"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>흐름</a>
+  <a href="#route" data-tab="route"><svg viewBox="0 0 24 24"><rect x="6" y="3" width="12" height="14" rx="3"/><path d="M6 11h12M9 21l1.5-4M15 21l-1.5-4"/></svg>가는 길</a>
+  <a href="#places" data-tab="places"><svg viewBox="0 0 24 24"><path d="M8 3h8l-1 7a3 3 0 0 1-6 0z"/><path d="M12 13v8M8.5 21h7"/></svg>장소</a>
+  <a href="#check" data-tab="check"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="M8.5 12.5l2.5 2.5 4.5-5"/></svg>챙길 것</a>
+</nav>
+
+<script>
+// ---------- Safe storage helpers (storage can throw in private mode) ----------
+const store = {
+  get(key, fallback) {
+    try { const v = localStorage.getItem(key); return v ? JSON.parse(v) : fallback; }
+    catch (e) { return fallback; }
+  },
+  set(key, value) {
+    try { localStorage.setItem(key, JSON.stringify(value)); } catch (e) { /* ignore */ }
+  }
+};
+
+// ---------- Data ----------
+// pos: address number along 서순라길 (south → north), used for the strip map
+const PLACES = [
+  {
+    id: "daramgee", name: "우리술집 다람쥐", kind: "전통주 · 한식 주점", pos: 101,
+    cat: ["first", "pick"], color: "var(--dancheong)",
+    desc: "서순라길 터줏대감 전통주점. 술 종류에 따라 잔을 달리 내주고, 인테리어가 세련돼 생일 자리로 무난합니다.",
+    menu: "<b>새우 미나리전</b>, <b>피순대 구이</b>(소스 2종), 참소라무침 · 전통주/막걸리 다양",
+    tip: "웨이팅이 잦은 집 — 금요일이면 예약하거나 오픈 직후 입장 추천",
+    addr: "서울 종로구 서순라길 101", tags: ["1차 추천", "전통주", "예약 권장"]
+  },
+  {
+    id: "sunlagil", name: "순라길 (홍어집)", kind: "홍어 전문 · 1966년부터 2대째", pos: 141,
+    cat: ["first"], color: "var(--dancheong)",
+    desc: "만화 『식객』에도 나온 홍어 노포. 국내산 홍어로 삼합·찜을 내고, 숙성 김치가 유명합니다. 홍어 좋아하는 분들이면 이만한 1차가 없어요.",
+    menu: "<b>홍어삼합</b>, 홍어찜, 홍어라면",
+    tip: "호불호가 갈리는 메뉴라 일행 취향을 먼저 확인",
+    addr: "서울 종로구 서순라길 141", tags: ["노포", "막걸리와 궁합"]
+  },
+  {
+    id: "heritage", name: "헤리티지 클럽", kind: "한옥 카페 & 바", pos: 75,
+    cat: ["second", "quiet", "pick"], color: "var(--lantern)",
+    desc: "중정 있는 한옥에 유리 지붕을 얹은 공간. 테이블 간격이 넉넉하고 조도가 낮아 차분히 이야기 나누기 좋습니다.",
+    menu: "저녁 7시 이후엔 커피 대신 <b>술만</b> 판매",
+    tip: "2차로 딱 — 1차 끝나고 7시 넘어 이동하면 시간이 맞아요",
+    addr: "서울 종로구 서순라길 75 1층", tags: ["2차 추천", "한옥", "조용함"]
+  },
+  {
+    id: "queensguard", name: "퀸즈가드", kind: "칵테일 · 맥주 · 와인", pos: 115,
+    cat: ["second"], color: "var(--lantern)",
+    desc: "영국 감성 바. 가게 달마시안 '레이디'가 유명하고, 돌담을 보며 마시는 바깥 자리가 인기입니다.",
+    menu: "<b>퀸즈가드 시그니처 진</b>(찻잎·허브를 냉침한 진) 약 15,000원",
+    tip: "11월 밤은 쌀쌀 — 실내 자리 위주로",
+    addr: "서울 종로구 서순라길 115", tags: ["칵테일", "돌담뷰"]
+  },
+  {
+    id: "gypsy", name: "서울집시", kind: "수제 맥주 브루어리", pos: 107,
+    cat: ["second"], color: "var(--lantern)",
+    desc: "직접 양조한 맥주를 파는 곳. 산미 있는 맥주 라인업이 다양하고, 큰 창 너머로 돌담길이 보입니다.",
+    menu: "하우스 <b>수제 맥주</b> 여러 종 · 맥주에 맞춘 안주",
+    tip: "다람쥐에서 몇 걸음 거리 — 1차 후 맥주로 입가심하기 좋아요",
+    addr: "서울 종로구 서순라길 107", tags: ["맥주", "다람쥐 근처"]
+  },
+  {
+    id: "orb", name: "오브 오브 라이트", kind: "작은 칵테일 · 와인 바", pos: 75.4,
+    cat: ["second", "quiet"], color: "var(--lantern)",
+    desc: "골목 안쪽, 10석 남짓한 아지트 같은 바. 사장님이 취향에 맞춰 칵테일을 추천해줍니다. 음식은 간단해서 식사 후 가는 곳.",
+    menu: "취향 맞춤 <b>칵테일</b>, 마시기 편한 와인 · 크래커/치즈",
+    tip: "후기상 생일 케이크 반입·생일주 서비스 사례가 있음 → 소규모면 미리 전화로 확인",
+    addr: "서울 종로구 서순라길 75-4", tags: ["소규모", "생일 케이크?"]
+  },
+  {
+    id: "yebibi", name: "순라길 예 X 비비", kind: "카페 & 와인바", pos: 55,
+    cat: ["second"], color: "var(--lantern)",
+    desc: "맞은편 돌담에 빔으로 영화·뮤직비디오를 쏴주는 야장 감성 집. 루마니아·마케도니아 등 특이한 산지 와인이 있습니다.",
+    menu: "이색 산지 <b>와인</b>, 직화 로스팅 커피",
+    tip: "서순라길 초입(남쪽) — 도착하자마자 들르기 좋은 위치",
+    addr: "서울 종로구 서순라길 55 1층", tags: ["돌담 영화", "와인"]
+  },
+  {
+    id: "bittle", name: "비틀비틀", kind: "셀프 바 · 테라스", pos: 89.7,
+    cat: ["second"], color: "var(--lantern)",
+    desc: "술·안주를 계산하고 원하는 자리에 앉는 방식. 옆집 비틀스타코에서 타코를 함께 시켜 먹을 수 있어요.",
+    menu: "와인·맥주 + <b>타코</b>(옆 가게)",
+    tip: "이용 시간 2시간 제한 후기 있음 · 테라스는 추울 수 있음",
+    addr: "서울 종로구 서순라길 89-7 1층", tags: ["캐주얼", "타코"]
+  },
+  {
+    id: "ida", name: "이다", kind: "한식 다이닝", pos: 153,
+    cat: ["first"], color: "var(--dancheong)",
+    desc: "제철 재료로 퓨전 한식을 내는 다이닝. '가볍게'보다는 제대로 대접하고 싶을 때의 선택지입니다.",
+    menu: "계절 메뉴 (예: 홍가리비, 부라타 치즈 등)",
+    tip: "2층 창가는 예약 필수 — 당일이면 전화부터",
+    addr: "서울 종로구 서순라길 153", tags: ["특별한 자리", "예약 필수"]
+  },
+  {
+    id: "sasa", name: "카페사사", kind: "한옥 카페", pos: 147,
+    cat: ["quiet"], color: "var(--celadon)",
+    desc: "창밖 돌담길이 액자처럼 보이는 한옥 카페. 술 대신 차 한잔 하실 분이 있거나, 일찍 도착했을 때 대기 장소로.",
+    menu: "논알코올 막걸리 + 구운 가래떡 '사사 한상', 과편",
+    tip: "술 못 하는 일행 배려용 카드",
+    addr: "서울 종로구 서순라길 147", tags: ["논알코올", "대기 장소"]
+  },
+  {
+    id: "gwangju", name: "광주집 (3차 옵션)", kind: "종로3가 숯불 야장", pos: 0,
+    cat: ["first"], color: "var(--celadon)", offStreet: true,
+    desc: "서순라길을 벗어나 종로3가 포차 골목 쪽. 갈매기살·항정살 숯불구이로 유명한 야장집이라 '한 판 더' 분위기일 때.",
+    menu: "<b>갈매기살</b>, 항정살",
+    tip: "역 근처라 귀가 동선이 편함",
+    addr: "서울 종로구 돈화문로11나길 3", tags: ["3차", "역 근처"]
+  }
+];
+
+const TIMELINE = [
+  { t: "16:30", title: "네이버 본사 출발", sub: "정자역에서 신분당선 탑승" },
+  { t: "17:30", title: "종로3가역 도착", sub: "7·8번 출구, 종묘 돌담 쪽으로" },
+  { t: "17:40", title: "돌담길 산책", sub: "해 진 직후라 담장 조명이 예쁠 시간" },
+  { t: "18:00", title: "1차 · 안주와 한잔", sub: "다람쥐(전통주) 또는 순라길(홍어)" },
+  { t: "19:30", title: "2차 · 분위기 바꿔서", sub: "헤리티지 클럽 / 퀸즈가드 / 서울집시" },
+  { t: "21:00", title: "귀가 또는 3차", sub: "신분당선 막차는 지도 앱에서 확인" }
+];
+
+const CHECKS = [
+  { id: "resv", t: "1차 가게 예약/웨이팅 확인", s: "금요일 저녁은 다람쥐 웨이팅 잦음 — 오후에 전화" },
+  { id: "cake", t: "케이크 · 초 준비", s: "반입 가능한 가게인지 미리 물어보기" },
+  { id: "gift", t: "선물 / 카드 한 장", s: "부담 없는 선에서" },
+  { id: "toast", t: "건배사 한마디", s: "\"선준 님의 다음 1년을 위하여!\"" },
+  { id: "warm", t: "겉옷 챙기기", s: "11월 저녁 돌담길은 쌀쌀함" },
+  { id: "last", t: "귀가 막차 시간 확인", s: "종로3가 → 양재/신사 → 신분당선" }
+];
+
+// ---------- Timeline with "now" marker ----------
+function toMin(hhmm) { const [h, m] = hhmm.split(":").map(Number); return h * 60 + m; }
+function renderTimeline() {
+  const el = document.getElementById("timeline");
+  const now = new Date();
+  const isToday = now.getFullYear() === 2026 && now.getMonth() === 10 && now.getDate() === 6;
+  const nowMin = now.getHours() * 60 + now.getMinutes();
+  let current = -1;
+  if (isToday) TIMELINE.forEach((s, i) => { if (nowMin >= toMin(s.t)) current = i; });
+  el.innerHTML = TIMELINE.map((s, i) => {
+    const cls = !isToday ? "" : i === current ? "now" : i < current ? "done" : "";
+    return `<li class="${cls}"><time>${s.t}</time><div><div class="t-title">${s.title}</div><div class="t-sub">${s.sub}</div></div></li>`;
+  }).join("");
+}
+
+// ---------- Sunset (approximate, NOAA formula) for Seoul ----------
+function sunsetSeoul(date) {
+  const lat = 37.57, lng = 126.98, tz = 9;
+  const start = new Date(date.getFullYear(), 0, 0);
+  const day = Math.floor((date - start) / 864e5);
+  const g = 2 * Math.PI / 365 * (day - 1);
+  const eqt = 229.18 * (0.000075 + 0.001868 * Math.cos(g) - 0.032077 * Math.sin(g) - 0.014615 * Math.cos(2 * g) - 0.040849 * Math.sin(2 * g));
+  const decl = 0.006918 - 0.399912 * Math.cos(g) + 0.070257 * Math.sin(g) - 0.006758 * Math.cos(2 * g) + 0.000907 * Math.sin(2 * g) - 0.002697 * Math.cos(3 * g) + 0.00148 * Math.sin(3 * g);
+  const rad = lat * Math.PI / 180;
+  const ha = Math.acos(Math.cos(90.833 * Math.PI / 180) / (Math.cos(rad) * Math.cos(decl)) - Math.tan(rad) * Math.tan(decl));
+  const mins = 720 - 4 * (lng - ha * 180 / Math.PI) - eqt + tz * 60;
+  const h = Math.floor(mins / 60), m = Math.round(mins % 60);
+  return `${h}:${String(m).padStart(2, "0")}`;
+}
+
+// ---------- Strip map (schematic, not to scale) ----------
+function renderStrip() {
+  const svg = document.getElementById("strip");
+  const onStreet = PLACES.filter(p => !p.offStreet).sort((a, b) => b.pos - a.pos); // north at top
+  const top = 70, bottom = 450, n = onStreet.length;
+  const step = (bottom - top) / (n - 1);
+  const wallX = 112;
+  let out = "";
+  // Jongmyo wall (east side)
+  out += `<rect x="${wallX - 14}" y="30" width="10" height="440" rx="3" fill="var(--stone)"/>`;
+  for (let y = 34; y < 466; y += 12) out += `<line x1="${wallX - 14}" x2="${wallX - 4}" y1="${y}" y2="${y}" stroke="var(--bg)" stroke-width="1.5"/>`;
+  out += `<text x="${wallX - 30}" y="250" fill="var(--dim)" font-size="11" text-anchor="middle" transform="rotate(-90 ${wallX - 30} 250)">종묘 돌담</text>`;
+  // street line
+  out += `<line x1="${wallX + 10}" x2="${wallX + 10}" y1="30" y2="470" stroke="var(--line)" stroke-width="3" stroke-dasharray="2 6" stroke-linecap="round"/>`;
+  out += `<text x="${wallX + 10}" y="20" fill="var(--muted)" font-size="11" text-anchor="middle">↑ 창덕궁 방향</text>`;
+  out += `<text x="${wallX + 10}" y="492" fill="var(--lantern)" font-size="12" font-weight="700" text-anchor="middle">종로3가역 7·8번 출구</text>`;
+  out += `<text x="${wallX + 10}" y="508" fill="var(--dim)" font-size="10" text-anchor="middle">도보 약 5분 · 개략도(축척 아님)</text>`;
+  onStreet.forEach((p, i) => {
+    const y = top + i * step;
+    const label = p.name.replace(/ \(.+\)/, "");
+    out += `<g class="pin" data-id="${p.id}" style="cursor:pointer">
+      <rect x="${wallX - 4}" y="${y - 16}" width="230" height="32" fill="transparent"/>
+      <circle cx="${wallX + 10}" cy="${y}" r="8" fill="${p.color}" stroke="var(--surface)" stroke-width="3"/>
+      <line x1="${wallX + 22}" x2="${wallX + 32}" y1="${y}" y2="${y}" stroke="var(--line)" stroke-width="1.5"/>
+      <text x="${wallX + 38}" y="${y + 1}" fill="var(--text)" font-size="13" font-weight="600" dominant-baseline="middle">${label}</text>
+      <text x="${wallX + 38}" y="${y + 15}" fill="var(--dim)" font-size="10" dominant-baseline="middle">서순라길 ${String(p.pos).replace(".", "-")}</text>
+    </g>`;
+  });
+  svg.innerHTML = out;
+  svg.querySelectorAll(".pin").forEach(g => g.addEventListener("click", () => focusPlace(g.dataset.id)));
+}
+
+// ---------- Place cards ----------
+let favs = new Set(store.get("ssl-favs", []));
+let filter = "all";
+
+function mapLinks(p) {
+  const q = encodeURIComponent(p.name.replace(/ \(.+\)/, "") + " " + (p.offStreet ? "종로3가" : "서순라길"));
+  return {
+    naver: `https://map.naver.com/p/search/${q}`,
+    kakao: `https://map.kakao.com/link/search/${q}`
+  };
+}
+
+function renderPlaces() {
+  const list = document.getElementById("placeList");
+  const items = PLACES.filter(p => {
+    if (filter === "all") return true;
+    if (filter === "fav") return favs.has(p.id);
+    return p.cat.includes(filter);
+  });
+  if (!items.length) {
+    list.innerHTML = `<div class="empty">${filter === "fav" ? "아직 찜한 곳이 없어요. 카드의 ☆를 눌러보세요." : "해당하는 곳이 없어요."}</div>`;
+    return;
+  }
+  list.innerHTML = items.map(p => {
+    const idx = PLACES.indexOf(p) + 1;
+    const links = mapLinks(p);
+    const on = favs.has(p.id);
+    const tags = p.tags.map((t, i) => `<span class="tag ${i === 0 && p.cat.includes("pick") ? "pick" : ""}">${t}</span>`).join("");
+    return `<article class="place" id="p-${p.id}">
+      <div class="place-head">
+        <div class="place-no" style="background:${p.color}">${idx}</div>
+        <div><h3>${p.name}</h3><div class="kind">${p.kind}</div></div>
+        <button class="star" data-id="${p.id}" aria-pressed="${on}" aria-label="${p.name} 찜하기">${on ? "★" : "☆"}</button>
+      </div>
+      <div class="tags">${tags}</div>
+      <p>${p.desc}</p>
+      <div class="menu">🍶 ${p.menu}</div>
+      <div class="tip">💡 ${p.tip}</div>
+      <div class="addr">📍 ${p.addr}</div>
+      <div class="actions">
+        <a class="btn naver" href="${links.naver}" target="_blank" rel="noopener">네이버지도</a>
+        <a class="btn" href="${links.kakao}" target="_blank" rel="noopener">카카오맵</a>
+      </div>
+    </article>`;
+  }).join("");
+  list.querySelectorAll(".star").forEach(b => b.addEventListener("click", () => toggleFav(b.dataset.id)));
+}
+
+function toggleFav(id) {
+  favs.has(id) ? favs.delete(id) : favs.add(id);
+  store.set("ssl-favs", [...favs]);
+  renderPlaces();
+}
+
+function setFilter(f) {
+  filter = f;
+  document.querySelectorAll(".filters button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.f === f)));
+  renderPlaces();
+}
+
+function focusPlace(id) {
+  if (filter !== "all" && !document.getElementById("p-" + id)) setFilter("all");
+  const card = document.getElementById("p-" + id);
+  if (!card) return;
+  card.scrollIntoView({ behavior: "smooth", block: "start" });
+  card.classList.add("flash");
+  setTimeout(() => card.classList.remove("flash"), 1600);
+}
+
+// ---------- Checklist ----------
+function renderChecks() {
+  const done = new Set(store.get("ssl-checks", []));
+  const el = document.getElementById("checks");
+  el.innerHTML = CHECKS.map(c => `<li><label><input type="checkbox" data-id="${c.id}" ${done.has(c.id) ? "checked" : ""}><span>${c.t}<small>${c.s}</small></span></label></li>`).join("");
+  el.querySelectorAll("input").forEach(i => i.addEventListener("change", () => {
+    i.checked ? done.add(i.dataset.id) : done.delete(i.dataset.id);
+    store.set("ssl-checks", [...done]);
+  }));
+}
+
+// ---------- Tab bar active state ----------
+function watchSections() {
+  const tabs = document.querySelectorAll(".tabbar a");
+  const ids = ["plan", "route", "map", "places", "check"];
+  const tabFor = { plan: "plan", route: "route", map: "places", places: "places", check: "check" };
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const t = tabFor[e.target.id];
+      tabs.forEach(a => a.classList.toggle("active", a.dataset.tab === t));
+    });
+  }, { rootMargin: "-40% 0px -55% 0px" });
+  ids.forEach(id => io.observe(document.getElementById(id)));
+}
+
+// ---------- Init ----------
+document.querySelectorAll(".filters button").forEach(b => b.addEventListener("click", () => setFilter(b.dataset.f)));
+document.querySelector("#sunset-chip b").textContent = sunsetSeoul(new Date(2026, 10, 6));
+renderTimeline();
+renderStrip();
+renderPlaces();
+renderChecks();
+watchSections();
+setInterval(renderTimeline, 60000);
+</script>
+</body>
+</html>
