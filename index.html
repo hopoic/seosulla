@@ -133,6 +133,19 @@
   .b-sbd { background: #d4003b; color: #fff; }
   .b-3 { background: #ef7c1c; }
   .b-walk { background: var(--surface-2); color: var(--text); border: 1px solid var(--line); }
+  .b-red { background: #e2231a; color: #fff; font-size: 11px; letter-spacing: -0.02em; }
+  .seg {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 4px; margin-bottom: 12px;
+    background: var(--surface); border: 1px solid var(--line); border-radius: 14px;
+  }
+  .seg button {
+    font: inherit; font-size: 15px; font-weight: 650; color: var(--muted);
+    background: transparent; border: 0; border-radius: 10px; padding: 10px 6px; min-height: 44px;
+  }
+  .seg button small { display: block; font-size: 11px; font-weight: 500; color: var(--dim); }
+  .seg button[aria-selected="true"] { background: var(--surface-2); color: var(--text); box-shadow: 0 1px 0 rgba(255,255,255,.04) inset, 0 2px 8px rgba(0,0,0,.25); }
+  .seg button[aria-selected="true"] small { color: var(--lantern); }
+  .card[hidden] { display: none; }
   .route-row .r-title { font-weight: 650; }
   .route-row .r-sub { color: var(--muted); font-size: 14px; }
   .note {
@@ -258,8 +271,13 @@
 
   <section id="route">
     <h2><span class="no">02</span>가는 길</h2>
-    <p class="lead">정자역 → 종로3가역, 대중교통 약 1시간</p>
-    <div class="card route">
+    <p class="lead">네이버 본사(정자역) → 서순라길. 편한 쪽으로 골라 가세요.</p>
+    <div class="seg" role="tablist" aria-label="교통수단 선택">
+      <button role="tab" data-mode="subway" aria-selected="true">🚇 지하철 <small>약 1시간</small></button>
+      <button role="tab" data-mode="bus" aria-selected="false">🚌 광역버스 <small>약 1시간+</small></button>
+    </div>
+
+    <div class="card route" data-panel="subway">
       <div class="route-row">
         <div class="badge b-sbd">신분</div>
         <div><div class="r-title">정자역 → 양재 또는 신사</div><div class="r-sub">신분당선 강남·신사 방면</div></div>
@@ -272,8 +290,30 @@
         <div class="badge b-walk">🚶</div>
         <div><div class="r-title">7·8번 출구 → 종묘 서쪽 돌담</div><div class="r-sub">도보 약 5분, 담장 오른쪽에 끼고 북쪽으로</div></div>
       </div>
-      <div class="note"><b>금요일 퇴근길</b>이라 택시·자차는 막힐 수 있어요. 지하철이 시간 계산하기 편합니다. 평일엔 서순라길에 차가 다니니(차 없는 거리는 주말만) 골목 걸을 때 조심하세요.</div>
+      <div class="note"><b>장점</b> 금요일 퇴근길에도 시간이 거의 정확해요. 환승 1번, 서순라길 바로 앞 출구.</div>
     </div>
+
+    <div class="card route" data-panel="bus" hidden>
+      <div class="route-row">
+        <div class="badge b-red">G</div>
+        <div><div class="r-title">G8110 · 정자역 정류장 탑승</div><div class="r-sub">서울 방면 → 종로2가·을지로2가 일대 하차</div></div>
+      </div>
+      <div class="route-row">
+        <div class="badge b-red">9401</div>
+        <div><div class="r-title">9401 · 정자3동행정복지센터 정류장</div><div class="r-sub">서울역 방면 → 우리은행종로지점·조계사 하차</div></div>
+      </div>
+      <div class="route-row">
+        <div class="badge b-walk">🚶</div>
+        <div><div class="r-title">종로 따라 동쪽으로 → 종묘</div><div class="r-sub">도보 15분 안팎, 또는 종각역에서 1호선 1정거장(종로3가)</div></div>
+      </div>
+      <div class="note"><b>장점</b> 갈아타지 않고 앉아서 갈 수 있어요. <b>주의</b> 금요일 저녁 경부고속도로·도심 정체로 시간이 들쭉날쭉하고, 정류장·하차 위치는 노선 개편으로 바뀔 수 있어 탑승 전 앱으로 꼭 확인하세요.</div>
+    </div>
+
+    <div class="actions" style="margin-top:12px">
+      <a class="btn naver" id="nmapRoute" href="#">네이버지도 길찾기</a>
+      <a class="btn" id="kmapRoute" href="#" target="_blank" rel="noopener">카카오맵 길찾기</a>
+    </div>
+    <p class="lead" style="margin:8px 0 0;font-size:13px">현재 위치에서 서순라길까지 실시간 경로를 엽니다. 평일엔 서순라길에 차가 다니니 골목에서 조심하세요.</p>
   </section>
 
   <section id="map">
@@ -302,12 +342,6 @@
     <div class="places" id="placeList"></div>
   </section>
 
-  <section id="check">
-    <h2><span class="no">05</span>챙길 것</h2>
-    <p class="lead">체크 상태는 이 폰에 저장됩니다.</p>
-    <ul class="checks" id="checks"></ul>
-  </section>
-
   <footer>
     가게 정보는 매거진·리뷰(엘르, 마리끌레르, 핫식신, 폴레 등) 기준이며 영업시간·휴무·예약 여부는 바뀔 수 있습니다.
     출발 전 네이버지도에서 한 번 더 확인하세요.<br>
@@ -318,8 +352,8 @@
 <nav class="tabbar" aria-label="바로가기">
   <a href="#plan" data-tab="plan"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>흐름</a>
   <a href="#route" data-tab="route"><svg viewBox="0 0 24 24"><rect x="6" y="3" width="12" height="14" rx="3"/><path d="M6 11h12M9 21l1.5-4M15 21l-1.5-4"/></svg>가는 길</a>
+  <a href="#map" data-tab="map"><svg viewBox="0 0 24 24"><path d="M12 21s-6-5.5-6-11a6 6 0 0 1 12 0c0 5.5-6 11-6 11z"/><circle cx="12" cy="10" r="2.2"/></svg>길 순서</a>
   <a href="#places" data-tab="places"><svg viewBox="0 0 24 24"><path d="M8 3h8l-1 7a3 3 0 0 1-6 0z"/><path d="M12 13v8M8.5 21h7"/></svg>장소</a>
-  <a href="#check" data-tab="check"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="M8.5 12.5l2.5 2.5 4.5-5"/></svg>챙길 것</a>
 </nav>
 
 <script>
@@ -428,22 +462,16 @@ const PLACES = [
 ];
 
 const TIMELINE = [
-  { t: "16:30", title: "네이버 본사 출발", sub: "정자역에서 신분당선 탑승" },
+  { t: "16:30", title: "네이버 본사 출발", sub: "지하철(신분당선→3호선) 또는 광역버스" },
   { t: "17:30", title: "종로3가역 도착", sub: "7·8번 출구, 종묘 돌담 쪽으로" },
   { t: "17:40", title: "돌담길 산책", sub: "해 진 직후라 담장 조명이 예쁠 시간" },
   { t: "18:00", title: "1차 · 안주와 한잔", sub: "다람쥐(전통주) 또는 순라길(홍어)" },
   { t: "19:30", title: "2차 · 분위기 바꿔서", sub: "헤리티지 클럽 / 퀸즈가드 / 서울집시" },
-  { t: "21:00", title: "귀가 또는 3차", sub: "신분당선 막차는 지도 앱에서 확인" }
+  { t: "21:00", title: "귀가 또는 3차", sub: "막차 시간은 지도 앱에서 확인" }
 ];
 
-const CHECKS = [
-  { id: "resv", t: "1차 가게 예약/웨이팅 확인", s: "금요일 저녁은 다람쥐 웨이팅 잦음 — 오후에 전화" },
-  { id: "cake", t: "케이크 · 초 준비", s: "반입 가능한 가게인지 미리 물어보기" },
-  { id: "gift", t: "선물 / 카드 한 장", s: "부담 없는 선에서" },
-  { id: "toast", t: "건배사 한마디", s: "\"선준 님의 다음 1년을 위하여!\"" },
-  { id: "warm", t: "겉옷 챙기기", s: "11월 저녁 돌담길은 쌀쌀함" },
-  { id: "last", t: "귀가 막차 시간 확인", s: "종로3가 → 양재/신사 → 신분당선" }
-];
+// Destination for route buttons: southern entrance of 서순라길 near Jongmyo
+const DEST = { name: "서순라길", lat: 37.5722, lng: 126.9930 };
 
 // ---------- Timeline with "now" marker ----------
 function toMin(hhmm) { const [h, m] = hhmm.split(":").map(Number); return h * 60 + m; }
@@ -576,22 +604,28 @@ function focusPlace(id) {
   setTimeout(() => card.classList.remove("flash"), 1600);
 }
 
-// ---------- Checklist ----------
-function renderChecks() {
-  const done = new Set(store.get("ssl-checks", []));
-  const el = document.getElementById("checks");
-  el.innerHTML = CHECKS.map(c => `<li><label><input type="checkbox" data-id="${c.id}" ${done.has(c.id) ? "checked" : ""}><span>${c.t}<small>${c.s}</small></span></label></li>`).join("");
-  el.querySelectorAll("input").forEach(i => i.addEventListener("change", () => {
-    i.checked ? done.add(i.dataset.id) : done.delete(i.dataset.id);
-    store.set("ssl-checks", [...done]);
-  }));
+// ---------- Transport mode switch (subway / bus) ----------
+function setMode(mode) {
+  document.querySelectorAll(".seg button").forEach(b => b.setAttribute("aria-selected", String(b.dataset.mode === mode)));
+  document.querySelectorAll("[data-panel]").forEach(p => { p.hidden = p.dataset.panel !== mode; });
+  store.set("ssl-mode", mode);
+}
+
+function setupRouteLinks() {
+  const name = encodeURIComponent(DEST.name);
+  // Naver Map app deep link (public transit from current location)
+  document.getElementById("nmapRoute").href =
+    `nmap://route/public?dlat=${DEST.lat}&dlng=${DEST.lng}&dname=${name}&appname=io.github.hopoic.seosulla`;
+  // Kakao Map web link (opens app if installed)
+  document.getElementById("kmapRoute").href =
+    `https://map.kakao.com/link/to/${name},${DEST.lat},${DEST.lng}`;
 }
 
 // ---------- Tab bar active state ----------
 function watchSections() {
   const tabs = document.querySelectorAll(".tabbar a");
-  const ids = ["plan", "route", "map", "places", "check"];
-  const tabFor = { plan: "plan", route: "route", map: "places", places: "places", check: "check" };
+  const ids = ["plan", "route", "map", "places"];
+  const tabFor = { plan: "plan", route: "route", map: "map", places: "places" };
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (!e.isIntersecting) return;
@@ -608,7 +642,9 @@ document.querySelector("#sunset-chip b").textContent = sunsetSeoul(new Date(2026
 renderTimeline();
 renderStrip();
 renderPlaces();
-renderChecks();
+document.querySelectorAll(".seg button").forEach(b => b.addEventListener("click", () => setMode(b.dataset.mode)));
+setMode(store.get("ssl-mode", "subway"));
+setupRouteLinks();
 watchSections();
 setInterval(renderTimeline, 60000);
 </script>
